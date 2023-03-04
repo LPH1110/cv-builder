@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import { publicRoutes as mainRoutes, ProtectedRoute } from './routes';
+import { Routes, Route } from 'react-router-dom';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <div>
+            <Routes>
+                {mainRoutes.map((route) => {
+                    const Component = route.component;
+
+                    return route.protected ? (
+                        <Route
+                            key={route.id}
+                            path={route.path}
+                            element={
+                                <ProtectedRoute>
+                                    <Component />
+                                </ProtectedRoute>
+                            }
+                        />
+                    ) : (
+                        <Route key={route.id} path={route.path} element={<Component />} />
+                    );
+                })}
+            </Routes>
+        </div>
+    );
 }
 
 export default App;
