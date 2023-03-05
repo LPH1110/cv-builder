@@ -5,14 +5,25 @@ import styles from './Signin.module.scss';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
-import { AppLogo, Button, GoogleSigninBtn } from '~/components';
+import { AppLogo, Button, GoogleSigninBtn, Toast, notify } from '~/components';
 import images from '~/assets';
+import { UserAuth } from '~/contexts/AuthContext';
 
 const cx = classNames.bind(styles);
 
 function Signin() {
     const emailInput = useRef();
     const passwordInput = useRef();
+    const { signin } = UserAuth();
+
+    const signInWithEmailAndPassword = async (data) => {
+        try {
+            await signin(data.email, data.password);
+        } catch (err) {
+            console.error('Failed to signin!', err);
+            notify({ type: 'error', message: 'Failed to sign in' });
+        }
+    };
 
     const formik = useFormik({
         initialValues: {
@@ -25,6 +36,8 @@ function Signin() {
         }),
         onSubmit: (values) => {
             console.log(values);
+
+            signInWithEmailAndPassword(values);
         },
     });
 
@@ -150,6 +163,7 @@ function Signin() {
                     </a>
                 </p>
             </section>
+            <Toast />
         </div>
     );
 }
