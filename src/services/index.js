@@ -6,6 +6,8 @@ export const getFirebaseError = (code) => {
             return 'This email is already exists. Do you want to sign in?';
         case 'auth/user-not-found':
             return "This email doesn't exist. Create a new one?";
+        case 'auth/popup-closed-by-user':
+            return 'Popup was closed. Please try again';
         default:
             return '';
     }

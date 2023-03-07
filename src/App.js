@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import { publicRoutes as mainRoutes, ProtectedRoute } from './routes';
 import { Routes, Route } from 'react-router-dom';
 
@@ -7,6 +8,7 @@ function App() {
             <Routes>
                 {mainRoutes.map((route) => {
                     const Component = route.component;
+                    const Layout = route.layout || Fragment;
 
                     return route.protected ? (
                         <Route
@@ -14,12 +16,22 @@ function App() {
                             path={route.path}
                             element={
                                 <ProtectedRoute>
-                                    <Component />
+                                    <Layout>
+                                        <Component />
+                                    </Layout>
                                 </ProtectedRoute>
                             }
                         />
                     ) : (
-                        <Route key={route.id} path={route.path} element={<Component />} />
+                        <Route
+                            key={route.id}
+                            path={route.path}
+                            element={
+                                <Layout>
+                                    <Component />
+                                </Layout>
+                            }
+                        />
                     );
                 })}
             </Routes>

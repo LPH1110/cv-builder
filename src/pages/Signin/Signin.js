@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { RiLinkedinFill } from 'react-icons/ri';
-import { Navigate, NavLink } from 'react-router-dom';
+import { Navigate, NavLink, useNavigate } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -20,12 +20,20 @@ function Signin() {
     const { signin, user } = UserAuth();
     const [showPassword, setShowPassword] = useState(false);
     const [showSpinner, setShowSpinner] = useState(false);
+    const [timeoutId, setTimeoutId] = useState('');
+    const navigate = useNavigate();
 
     const signInWithEmailAndPassword = async (data) => {
         setShowSpinner(true);
         try {
             await signin(data.email, data.password);
             setShowSpinner(false);
+            notify({ type: 'success', message: 'You have successfully logged in' });
+            setTimeoutId(
+                setTimeout(() => {
+                    navigate('/');
+                }, 2000),
+            );
         } catch (err) {
             console.error(err.code);
             notify({ type: 'error', message: getFirebaseError(err.code) });
@@ -66,14 +74,13 @@ function Signin() {
         return () => {
             emailElement?.removeEventListener('focusout', handleFocusOut);
             passwordElement?.removeEventListener('focusout', handleFocusOut);
+            clearTimeout(timeoutId);
         };
     }, []);
 
     const handleShowPassword = () => {
         setShowPassword(!showPassword);
     };
-
-    if (user) return <Navigate to="/" />;
 
     return (
         <div className="grid grid-cols-1 lg:grid-cols-2 h-full bg-green-100 gap-y-8">

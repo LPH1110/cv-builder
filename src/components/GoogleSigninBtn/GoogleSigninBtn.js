@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { useNavigate } from 'react-router-dom';
 
-import { Button, Spinner } from '~/components';
+import { Button, Spinner, notify } from '~/components';
 import { UserAuth } from '~/contexts/AuthContext';
+import { getFirebaseError } from '~/services';
 
 function GoogleSigninBtn() {
     const { googleSignIn } = UserAuth();
@@ -16,7 +17,7 @@ function GoogleSigninBtn() {
             await googleSignIn();
             navigate('/');
         } catch (err) {
-            console.error('Failed to sign in via your Google account', err);
+            notify({ type: 'error', message: getFirebaseError(err.code) });
         }
         setShowSpinner(false);
     };
