@@ -1,7 +1,14 @@
 import React from 'react';
+import { UserAuth } from '~/contexts/AuthContext';
 
 function Home() {
-    return <div>Home page</div>;
+    const { logOut } = UserAuth();
+    return (
+        <div>
+            Home page
+            <button onClick={logOut}>Log out</button>
+        </div>
+    );
 }
 
 export default Home;
