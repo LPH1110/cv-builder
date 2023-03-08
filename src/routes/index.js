@@ -1,15 +1,22 @@
 import { v4 as uuidv4 } from 'uuid';
-import { Home, Signin, Signup, Templates, CoverLetter, About } from '~/pages';
+import { Home, Signin, Signup, Templates, CoverLetter, About, Resume } from '~/pages';
 import { DefaultLayout } from '~/layouts';
 export { default as ProtectedRoute } from './ProtectedRoute';
 
 export const publicRoutes = [
     {
         id: uuidv4,
-        component: Templates,
+        component: Resume,
         layout: DefaultLayout,
         protected: true,
         path: '/',
+    },
+    {
+        id: uuidv4,
+        component: Templates,
+        layout: DefaultLayout,
+        protected: true,
+        path: '/templates',
     },
     {
         id: uuidv4,

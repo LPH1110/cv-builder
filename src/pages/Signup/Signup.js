@@ -128,26 +128,28 @@ function Signup() {
                             <p className="text-slate-400 text-center">or login with</p>
                         </div>
                         <section className="space-y-6">
-                            <div className="flex flex-col relative">
-                                <input
-                                    ref={emailInput}
-                                    className={cx(
-                                        'input-inner',
-                                        'relative my-2 border-b border-slate-200 p-2 focus:border-indigo-500 outline-none ease duration-200',
-                                    )}
-                                    name="email"
-                                    id="email"
-                                    type="text"
-                                    value={formik.values.email}
-                                    onChange={formik.handleChange}
-                                />
+                            <div>
+                                <div className="flex flex-col relative border-b border-slate-200">
+                                    <input
+                                        ref={emailInput}
+                                        className={cx(
+                                            'input-inner',
+                                            'w-full marker:relative my-2 p-2 focus:border-indigo-500 outline-none ease duration-200',
+                                        )}
+                                        name="email"
+                                        id="email"
+                                        type="text"
+                                        value={formik.values.email}
+                                        onChange={formik.handleChange}
+                                    />
 
-                                <label
-                                    className="cursor-text ease duration-300 focus-within:font-semibold pl-2 w-full top-1/2 -translate-y-1/2 absolute text-slate-500"
-                                    htmlFor="email"
-                                >
-                                    Email
-                                </label>
+                                    <label
+                                        className="cursor-text ease duration-300 focus-within:font-semibold pl-2 w-full top-1/2 -translate-y-1/2 absolute text-slate-500"
+                                        htmlFor="email"
+                                    >
+                                        Email
+                                    </label>
+                                </div>
                                 {formik.touched.email && formik.errors.email ? (
                                     <span className="text-red-500">{formik.errors.email}</span>
                                 ) : null}
