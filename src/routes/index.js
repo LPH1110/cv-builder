@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-import { Home, Signin, Signup, Templates, CoverLetter, About, Resume } from '~/pages';
+import { Home, Signin, Signup, Templates, CoverLetter, About, Resume, Preview } from '~/pages';
 import { DefaultLayout } from '~/layouts';
 export { default as ProtectedRoute } from './ProtectedRoute';
 
@@ -10,6 +10,13 @@ export const publicRoutes = [
         layout: DefaultLayout,
         protected: true,
         path: '/',
+    },
+    {
+        id: uuidv4,
+        component: Preview,
+        layout: DefaultLayout,
+        protected: true,
+        path: '/preview',
     },
     {
         id: uuidv4,

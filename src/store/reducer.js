@@ -1,4 +1,10 @@
-export const initialState = {};
+export const initialState = {
+    personalDetailForm: {
+        firstName: '',
+        lastName: '',
+        jobTitle: '',
+    },
+};
 
 const reducer = (state, action) => {
     switch (action.type) {

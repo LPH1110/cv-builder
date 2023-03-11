@@ -5,3 +5,4 @@ export { default as Templates } from './Templates';
 export { default as CoverLetter } from './CoverLetter';
 export { default as About } from './About';
 export { default as Resume } from './Resume';
+export { default as Preview } from './Preview';

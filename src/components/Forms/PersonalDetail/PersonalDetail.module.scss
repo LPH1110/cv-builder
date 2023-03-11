@@ -1,0 +1,18 @@
+.input-inner:focus ~ label {
+    color: rgb(59 130 246);
+    top: 0;
+    transition: all ease 0.3s;
+    padding-left: 0;
+    font-weight: 600;
+    opacity: 1 !important;
+}
+
+.avatar-overlay {
+    opacity: 0;
+}
+
+.avatar:hover {
+    .avatar-overlay {
+        opacity: 1;
+    }
+}
