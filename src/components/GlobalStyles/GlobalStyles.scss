@@ -4,6 +4,12 @@
 @tailwind components;
 @tailwind utilities;
 
+// Global CSS
+.resume-container {
+    width: 56.25rem;
+    height: 79.563rem;
+}
+
 html {
     font-family: 'Baloo 2', cursive;
     overflow: overlay;

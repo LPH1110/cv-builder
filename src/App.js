@@ -1,6 +1,7 @@
 import { Fragment } from 'react';
 import { publicRoutes as mainRoutes, ProtectedRoute } from './routes';
 import { Routes, Route } from 'react-router-dom';
+import { ScrollToTop } from '~/components';
 
 function App() {
     return (
@@ -17,7 +18,9 @@ function App() {
                             element={
                                 <ProtectedRoute>
                                     <Layout>
-                                        <Component />
+                                        <ScrollToTop>
+                                            <Component />
+                                        </ScrollToTop>
                                     </Layout>
                                 </ProtectedRoute>
                             }
@@ -28,7 +31,9 @@ function App() {
                             path={route.path}
                             element={
                                 <Layout>
-                                    <Component />
+                                    <ScrollToTop>
+                                        <Component />
+                                    </ScrollToTop>
                                 </Layout>
                             }
                         />
